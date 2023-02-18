@@ -7,6 +7,7 @@ from tg import dispatcher
 from main_menu import main_menu
 from search import search, search_tracks
 from filters import SearchFilter
+from track import track
 
 
 # MAIN MENU
@@ -30,4 +31,9 @@ dispatcher.register_message_handler(
     ChatTypeFilter(chat_type=ChatType.PRIVATE),
     IsReplyFilter(is_reply=True),
     SearchFilter()
+)
+
+# TRACK
+dispatcher.register_message_handler(
+    track, ChatTypeFilter(chat_type=ChatType.PRIVATE), text_startswith="/track_"
 )
