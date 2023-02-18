@@ -11,3 +11,9 @@ from main_menu import main_menu
 dispatcher.register_message_handler(
     main_menu, ChatTypeFilter(chat_type=ChatType.PRIVATE), CommandStart()
 )
+dispatcher.register_message_handler(
+    main_menu, ChatTypeFilter(chat_type=ChatType.PRIVATE), text="/menu"
+)
+dispatcher.register_message_handler(
+    main_menu, ChatTypeFilter(chat_type=ChatType.PRIVATE), text="//"
+)
