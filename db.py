@@ -1,31 +1,8 @@
 
-from dataclasses import dataclass
-
 import aiosqlite
 
 import config
-
-
-@dataclass
-class Performer:
-    performer_id: int
-    name: str
-
-
-@dataclass
-class Album:
-    album_id: int
-    title: str
-    performer: Performer
-
-
-@dataclass
-class Track:
-    track_id: int
-    track_tg_file_id: str
-    title: str
-    #album: Album
-    #performers: list[Performer]
+from data_classes import Track
 
 
 async def get_track(track_id: int):

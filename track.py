@@ -5,11 +5,12 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from private_code.music import track_download
 from db import get_track as get_track_db
+from data_classes import Track
 
 
 async def track(update: Message):
     track_id = int(update.text[7:])
-    track = await get_track_db(track_id=track_id)
+    track: Track = await get_track_db(track_id=track_id)
 
     if track is None:
         pathfile, track = await track_download(track_id=track_id)
