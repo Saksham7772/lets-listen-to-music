@@ -12,13 +12,14 @@ class Performer:
 class Album:
     album_id: int
     title: str
-    performer: Performer
+    track_count: int
+    performers: list[Performer]
 
 
 @dataclass
 class Track:
     track_id: int
-    track_tg_file_id: str
     title: str
-    #album: Album
-    #performers: list[Performer]
+    album: Album
+    performers: list[Performer]
+    file_tg: str
