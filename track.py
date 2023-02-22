@@ -16,16 +16,11 @@ async def track(update: Message):
         print(True)
 
     else:
-        track, _ = await get_track_and_download(track_id=track_id)
-        print(track)
-
-    """
-    if track is None:
-        pathfile, track = await track_download(track_id=track_id)
+        track, pathfile = await get_track_and_download(track_id=track_id)
         sent_message = await update.answer_audio(
             audio=open(pathfile, "rb"),
             title=track.title,
-            performer=", ".join([performer.name for performer in track.artists]),
+            performer=", ".join([performer.name for performer in track.performers]),
             reply_markup=InlineKeyboardMarkup(row_width=1).add(
                 InlineKeyboardButton(
                     text="Похожие песни",
@@ -34,12 +29,5 @@ async def track(update: Message):
             )
         )
 
-        pass
-
         if os.path.isfile(pathfile):
             os.remove(pathfile)
-
-    else:
-        pass
-
-    """
