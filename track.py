@@ -4,7 +4,7 @@ import os
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from private_code.music import get_track_and_download
-from db import get_track as get_track_db
+from db import get_track as get_track_db, add_track as add_track_db
 from data_classes import Track
 
 
@@ -27,6 +27,11 @@ async def track(update: Message):
                     callback_data=f"track__similar_{track_id}"
                 )
             )
+        )
+
+        await add_track_db(
+            track=track,
+            file_tg=sent_message.audio.file_id
         )
 
         if os.path.isfile(pathfile):
