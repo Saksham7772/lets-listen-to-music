@@ -22,4 +22,4 @@ class Track:
     title: str
     album: Album
     performers: list[Performer]
-    file_tg: str
+    #file_tg: str

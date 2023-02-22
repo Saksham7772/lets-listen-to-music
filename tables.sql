@@ -13,7 +13,7 @@ CREATE TABLE album (
 CREATE TABLE track (
     track_id integer not null,
     title text not null,
-    album integer not null
+    album integer not null,
 
     FOREIGN KEY (album) REFERENCES album (album_id)
 );
