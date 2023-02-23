@@ -2,25 +2,35 @@
 import aiosqlite
 
 import config
-from data_classes import Track
+from data_classes import Track, Album
 
 
 async def get_track(track_id: int):
     async with aiosqlite.connect(config.SQLITE_PATH_DB) as db:
         db.row_factory = aiosqlite.Row
         async with db.execute(
-            "select"
-            " t.track_id as track_id"
-            ", t.title as track_title"
-            " from track as t"
-            f" where t.track_id={track_id}"
+            "SELECT"
+            "  t.track_id AS track_id"
+            ", t.title AS track_title"
+            ", a.album_id AS album_id"
+            ", a.title AS album_title"
+            ", a.track_count AS album_track_count"
+            " FROM track AS t"
+            " JOIN album AS a"
+            " ON t.album=a.album_id"
+            f" WHERE t.track_id={track_id}"
         ) as cursor:
             row = await cursor.fetchone()
             if row is not None:
                 return Track(
                     track_id=row["track_id"],
                     title=row["track_title"],
-                    album=None,
+                    album=Album(
+                        album_id=row["album_id"],
+                        title=row["album_title"],
+                        track_count=row["album_track_count"],
+                        performers=None
+                    ),
                     performers=None
                 )
             else:

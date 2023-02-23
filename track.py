@@ -13,7 +13,7 @@ async def track(update: Message):
     track: Track = await get_track_db(track_id=track_id)
 
     if track is not None:
-        print(True)
+        print(track)
 
     else:
         track, pathfile = await get_track_and_download(track_id=track_id)
