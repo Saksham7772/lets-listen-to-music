@@ -7,7 +7,7 @@ from tg import dispatcher
 from main_menu import main_menu
 from search import search, search_tracks
 from filters import SearchFilter
-from track import track
+from track import track, tracks_similar
 
 
 # MAIN MENU
@@ -36,4 +36,9 @@ dispatcher.register_message_handler(
 # TRACK
 dispatcher.register_message_handler(
     track, ChatTypeFilter(chat_type=ChatType.PRIVATE), text_startswith="/track_"
+)
+
+# TRACKS SIMILAR
+dispatcher.register_callback_query_handler(
+    tracks_similar, text_startswith="track__similar_"
 )
