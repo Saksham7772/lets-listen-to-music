@@ -15,9 +15,16 @@ async def get_track(track_id: int):
             ", a.album_id AS album_id"
             ", a.title AS album_title"
             ", a.track_count AS album_track_count"
+            ", ttg.file_tg"
+
             " FROM track AS t"
+
             " JOIN album AS a"
             " ON t.album=a.album_id"
+
+            " JOIN tracks_in_tg AS ttg"
+            " ON t.track_id=ttg.track_id"
+
             f" WHERE t.track_id={track_id}"
         ) as cursor:
             row = await cursor.fetchone()
@@ -31,7 +38,8 @@ async def get_track(track_id: int):
                         track_count=row["album_track_count"],
                         performers=None
                     ),
-                    performers=None
+                    performers=None,
+                    file_tg=row["file_tg"]
                 )
             else:
                 return None

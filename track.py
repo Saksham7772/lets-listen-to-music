@@ -12,8 +12,18 @@ async def track(update: Message):
     track_id = int(update.text[7:])
     track: Track = await get_track_db(track_id=track_id)
 
+    _buttons = InlineKeyboardMarkup(row_width=1).add(
+        InlineKeyboardButton(
+            text="Похожие песни",
+            callback_data=f"track__similar_{track_id}"
+        )
+    )
+
     if track is not None:
-        print(track)
+        await update.answer_audio(
+            audio=track.file_tg,
+            reply_markup=_buttons
+        )
 
     else:
         track, pathfile = await get_track_and_download(track_id=track_id)
@@ -21,12 +31,7 @@ async def track(update: Message):
             audio=open(pathfile, "rb"),
             title=track.title,
             performer=", ".join([performer.name for performer in track.performers]),
-            reply_markup=InlineKeyboardMarkup(row_width=1).add(
-                InlineKeyboardButton(
-                    text="Похожие песни",
-                    callback_data=f"track__similar_{track_id}"
-                )
-            )
+            reply_markup=_buttons
         )
 
         await add_track_db(
