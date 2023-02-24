@@ -8,7 +8,14 @@ from main_menu import main_menu
 from search import search, search_tracks
 from filters import SearchFilter
 from track import track, tracks_similar
-from ads import menu_ads
+from ads.ads import menu_ads
+from ads.create_ad import (
+    StateAD, create_ad__start,
+    create_ad__text,
+    create_ad__button_title, create_ad__button_url,
+    create_ad__view_limit,
+    cancel_ad
+)
 
 
 # MAIN MENU
@@ -47,4 +54,24 @@ dispatcher.register_callback_query_handler(
 # ADS
 dispatcher.register_message_handler(
     menu_ads, text="/ads"
+)
+
+# Create AD
+dispatcher.register_callback_query_handler(
+    create_ad__start, text="ads__create_ad"
+)
+dispatcher.register_message_handler(
+    create_ad__text, state=StateAD.text
+)
+dispatcher.register_message_handler(
+    create_ad__button_title, state=StateAD.button_title
+)
+dispatcher.register_message_handler(
+    create_ad__button_url, state=StateAD.button_url
+)
+dispatcher.register_message_handler(
+    create_ad__view_limit, state=StateAD.view_limit
+)
+dispatcher.register_callback_query_handler(
+    cancel_ad, state=StateAD, text="cancel_ad"
 )

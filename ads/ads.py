@@ -13,7 +13,7 @@ async def menu_ads(update: Message):
         reply_markup=InlineKeyboardMarkup(row_width=1).add(
             InlineKeyboardButton(
                 text="Создать рекламную интеграцию",
-                callback_data="ads__add_ad"
+                callback_data="ads__create_ad"
             ),
             InlineKeyboardButton(
                 text="Архив",
