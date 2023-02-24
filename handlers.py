@@ -8,6 +8,7 @@ from main_menu import main_menu
 from search import search, search_tracks
 from filters import SearchFilter
 from track import track, tracks_similar
+from ads import menu_ads
 
 
 # MAIN MENU
@@ -41,4 +42,9 @@ dispatcher.register_message_handler(
 # TRACKS SIMILAR
 dispatcher.register_callback_query_handler(
     tracks_similar, text_startswith="track__similar_"
+)
+
+# ADS
+dispatcher.register_message_handler(
+    menu_ads, text="/ads"
 )
