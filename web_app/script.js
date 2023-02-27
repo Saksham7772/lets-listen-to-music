@@ -16,7 +16,12 @@ function handleInput(e, name) {
     }
 }
 
+function checkForm() {
+    form.text.getElementsByTagName('input')
+}
+
 form.text.oninput = (e) => handleInput(e, 'text')
 form.button_title.oninput = (e) => handleInput(e, 'button_title')
 form.button_url.oninput = (e) => handleInput(e, 'button_url')
 form.view_limit.oninput = (e) => handleInput(e, 'view_limit')
+form.button.onclick = checkForm

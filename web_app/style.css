@@ -48,12 +48,14 @@ label.filed input {
 
 input:focus + span,
 label.filed span {
+    cursor: default;
     top: -8px;
     font-size: 12px;
     color: var(--focus-color);
 }
 
 span {
+    cursor: text;
     position: absolute;
     top: 15%;
     left: 10px;
@@ -72,4 +74,9 @@ span {
     padding: 8px 14px;
     border-radius: 6px;
     margin-top: 14px;
+}
+
+.button.disable {
+    pointer-events: none;
+    background-color: #999;
 }
