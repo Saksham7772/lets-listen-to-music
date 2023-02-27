@@ -1,0 +1,72 @@
+
+:root {
+    --focus-color: #4753c4;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.form {
+    width: 400px;
+    display: grid;
+    padding: 32px;
+    background-color: #fff;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 16px;
+}
+
+label {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+input {
+    height: 30px;
+    width: 100%;
+    padding: 0 10px;
+    outline: none;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+}
+
+input:focus {
+    border-color: var(--focus-color);
+}
+
+input:focus + span {
+    top: -8px;
+    font-size: 12px;
+    color: var(--focus-color);
+}
+
+span {
+    position: absolute;
+    top: 15%;
+    left: 10px;
+    font-weight: 300;
+    color: #555;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    padding: 0 4px;
+}
+
+.button {
+    justify-self: center;
+    background-color: var(--focus-color);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+}
