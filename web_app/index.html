@@ -1,46 +1,67 @@
 
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
   <meta charset='UTF-8'>
-  <title>Let’s listen to MUSIC - Create AD</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <link rel='stylesheet' href='style.css'>
 
+  <title>Let’s listen to MUSIC - Create AD</title>
 </head>
 
 <body>
+  <h2>Создание рекламной интеграции</h2>
+
+  <form action='#' class='form-container'>
+
     <div class='form'>
-        <div class='title'>Создание рекламной интеграции</div>
-
-        <label id='ad__text'>
-            <input type='text'>
-                <span>Рекламный текст</span>
-            </input>
-        </label>
-
-        <label id='ad__button_title'>
-            <input type='text'>
-                <span>Название кнопки</span>
-            </input>
-        </label>
-
-        <label id='ad__button_url'>
-            <input type='text'>
-                <span>Ссылка кнопки</span>
-            </input>
-        </label>
-
-        <label id='ad__view_limit'>
-            <input type='text'>
-                <span>Количество показов</span>
-            </input>
-        </label>
-
-        <div class='button disable'>Завершить</div>
-
+      <textarea rows='5'
+        placeholder='Текст рекламы'
+        maxlength='200'
+        required
+        tabindex='1'
+        name='text'></textarea>
     </div>
 
-  <script  src='script.js'></script>
+    <div class='form'>
+      <input type='text'
+        maxlength='25'
+        placeholder='Название кнопки'
+        title='Не более 25 символов.'
+        required
+        autocomplate='off'
+        tabindex='2'
+        name='button-title'>
+    </div>
+
+    <div class='form'>
+      <input type='text'
+        pattern='https://[A-Za-z0-9\D]+'
+        placeholder='Ссылка кнопки'
+        required
+        autocomplate='off'
+        tabindex='3'
+        name='button-url'>
+    </div>
+
+    <div class='form'>
+      <input type='tel'
+        placeholder='Количество показов' 
+        required
+        autocomplate='off'
+        tabindex='4'
+        name='view-limit'>
+    </div>
+
+    <div class='form'>
+      <button id='form-button'>Далее</button>
+    </div>
+
+  </form>
+
+  <script src='https://telegram.org/js/telegram-web-app.js'></script>
+  <script src='script.js'></script>
 
 </body>
 </html>

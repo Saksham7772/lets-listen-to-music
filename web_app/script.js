@@ -1,39 +1,33 @@
+"use strict"
 
-const form = {
-    text: document.getElementById('ad__text'),
-    button_title: document.getElementById('ad__button_title'),
-    button_url: document.getElementById('ad__button_url'),
-    view_limit: document.getElementById('ad__view_limit'),
+document.addEventListener('DOMContentLoaded', function(){
 
-    button: document.querySelector('.button'),
-}
+    // TELEGRAM
+    let tg = window.Telegram.WebApp;
+    //tg.expand();
 
-function checkForm() {
-    const text = form.text.getElementsByTagName('input')[0].value
-    const button_title = form.button_title.getElementsByTagName('input')[0].value
-    const button_url = form.button_url.getElementsByTagName('input')[0].value
-    const view_limit = form.view_limit.getElementsByTagName('input')[0].value
+    tg.MainButton.text = 'Отправить'
+    //tg.MainButton.color = '#'
 
-    if (text && button_title && button_url && view_limit) {
-        form.button.classList.remove('disable')
-    } else {
-        form.button.classList.add('disable')
-    }
-}
 
-function handleInput(e, name) {
-    const { value } = e.target
-    if (value) {
-        form[name].classList.add('filed')
-    } else {
-        form[name].classList.remove('filed')
-    }
-    checkForm()
-}
+    // FORM
+    let formData = {};
+    const form = document.querySelector('form');
 
-form.text.oninput = (e) => handleInput(e, 'text')
-form.button_title.oninput = (e) => handleInput(e, 'button_title')
-form.button_url.oninput = (e) => handleInput(e, 'button_url')
-form.view_limit.oninput = (e) => handleInput(e, 'view_limit')
+    form.addEventListener('input', function(event){
+        formData[event.target.name] = event.target.value;
+    });
 
-form.button.onclick = () => alert('Done')
+    form.addEventListener('submit', async function(event){
+        event.preventDefault();
+        form.classList.add('_sending');
+
+        tg.MainButton.show();
+    });
+
+
+    // SEND DATA TO TELEGRAM
+    Telegram.WebApp.onEvent('mainButtonClicked', function(){
+        tg.sendData(formData);
+    });
+});

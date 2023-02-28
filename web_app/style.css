@@ -1,82 +1,79 @@
 
-:root {
-    --focus-color: #4753c4;
+h2 {
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
 }
 
-* {
-    margin: 0;
-    box-sizing: border-box;
+.form-container {
+    position: relative;
 }
 
-body {
-    height: 100vh;
-    display: grid;
-    align-items: center;
-    justify-items: center;
+.form-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease 0s;
+}
+
+.form-container._sending::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .form {
-    width: 400px;
-    display: grid;
-    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
 }
 
-.title {
-    font-size: 24px;
-    font-weight: 300;
-    margin-bottom: 32px;
-}
-
-label {
-    position: relative;
-    margin-bottom: 12px;
+.form button {
+    margin-top: 10px;
 }
 
 input {
-    height: 30px;
     width: 100%;
-    padding: 0 10px;
+}
+
+input:focus {
     outline: none;
-    border: 1.5px solid #ccc;
-    border-radius: 6px;
 }
 
-input:focus,
-label.filed input {
-    border-color: var(--focus-color);
+input:valid {
 }
 
-input:focus + span,
-label.filed span {
-    cursor: default;
-    top: -8px;
-    font-size: 12px;
-    color: var(--focus-color);
+input:invalid {
+    border-color: #f76565;
 }
 
-span {
-    cursor: text;
-    position: absolute;
-    top: 15%;
-    left: 10px;
-    font-weight: 300;
-    color: #555;
-    background-color: #fff;
-    transition: all 0.3s ease-in-out;
-    padding: 0 4px;
+input:not(:focus):invalid {
+    border-color: revert;
 }
 
-.button {
-    cursor: pointer;
-    justify-self: center;
-    background-color: var(--focus-color);
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 6px;
-    margin-top: 14px;
+textarea {
+    width: 100%;
 }
 
-.button.disable {
-    pointer-events: none;
-    background-color: #999;
+textarea:focus {
+    outline: none;
+}
+
+textarea:valid {
+}
+
+textarea:invalid {
+    border-color: #f76565;
+}
+
+textarea:not(:focus):invalid {
+    border-color: revert;
 }
