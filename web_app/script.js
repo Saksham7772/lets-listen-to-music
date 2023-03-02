@@ -24,5 +24,5 @@ form.addEventListener('submit', async function(event){
 
 
 Telegram.WebApp.onEvent('mainButtonClicked', function(){
-    tg.sendData(JSON.stringify(formData);
+    tg.sendData(JSON.stringify(formData));
 });

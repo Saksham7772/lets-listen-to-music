@@ -18,7 +18,7 @@ async def menu_ads(update: Message):
             KeyboardButton(
                 text="Создать рекламную интеграцию",
                 web_app=WebAppInfo(
-                    url="https://spuxel.github.io/telegram-web-app-music/"
+                    url="https://spuxel.github.io/telegram--web-app--lets-listen-to-music--create-ad/"
                 )
             ) 
         )
